@@ -1,0 +1,7 @@
+ipa.cloudera.com
+master-1.cloudera.com
+master-2.cloudera.com
+master-3.cloudera.com
+worker-1.cloudera.com
+worker-2.cloudera.com
+worker-3.cloudera.com
