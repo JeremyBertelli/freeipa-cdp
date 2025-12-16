@@ -1,22 +1,29 @@
-# freeipa-cdp
-FreeIPA installation and configuration for Cloudera
+# FreeIPA-CDP
+FreeIPA installation and configuration for Cloudera environments
 
 ## Host pre-requisites
 
-Modify the utils/host-list with the list of all the hosts of your cluster (including IPA server)
+Update `utils/host-list.txt` with the full list of cluster hosts, including the FreeIPA server.
 
 ### Verify DNS
 
+Ensure that forward and reverse DNS resolution is correctly configured for all hosts.
 ```bash
-yum install bind-utils -y
+yum install -y bind-utils
 chmod +x utils/verify_dns.sh
 ./utils/verify_dns.sh host-list.txt
 ```
-### Configure passwordless ssh
+
+### Passwordless SSH configuration
+
+Configure SSH key-based authentication to allow Ansible to access all nodes without passwords.
 ```bash
 dnf install -y sshpass
 ssh-keygen
+```
 
+Deploy the SSH keys and validate access:
+```bash
 chmod +x utils/deploy_keys.sh
 ./utils/deploy_keys.sh host-list.txt
 
@@ -25,98 +32,53 @@ chmod +x utils/check_access.sh
 ```
 
 ## Ansible installation
+
+Install Ansible and the required FreeIPA collection.
 ```bash
 dnf install -y ansible-core git
 ansible-galaxy collection install freeipa.ansible_freeipa
 ```
 
-Modify freeipa-deploy/inventory.yml for your cluster with ipa server and clients ; then check connectivity with ansible
-
-```
+Edit `freeipa-deploy/inventory.yml` to define the FreeIPA server and client hosts, then verify connectivity:
+```bash
 cd freeipa-deploy
 ansible -i inventory.yml all -m ping
 ```
 
-## Configuring the playbook
+## Playbook configuration
 
-### Create vault for your password
-```
+### Create an Ansible Vault for credentials
+
+Create a vault file to securely store sensitive passwords.
+```bash
 ansible-vault create group_vars/ipa_cluster/vault.yml
 ```
 
-```
+Add the following variables:
+```bash
 vault_ipa_admin_password: "<STRONG_ADMIN_PASSWORD>"
 vault_ipa_dm_password: "<STRONG_DIRECTORY_MANAGER_PASSWORD>"
 ```
 
+### Cluster configuration
 
-
-### Configuration
-
-Edit file group_vars/ipa_cluster/ipacluster.yml
-```
+Edit `group_vars/ipa_cluster/ipacluster.yml` and adjust the values to match your environment:
+```bash
 # DNS / LDAP domain
-ipaserver_domain: perth.root.comops.site
+ipaserver_domain: cloudera.com
 
 # Kerberos realm (Cloudera)
 ipaserver_realm: CLOUDERA.COM
 
-# CA subject
-ipaserver_ca_subject: "CN=IPA CA,O=CLOUDERA,L=Perth,C=AU"
+# Certificate Authority subject
+ipaserver_ca_subject: "CN=IPA CA,O=CLOUDERA,L=Paris,C=FR"
 ```
+
+Also ensure that inventory.yml correctly reflects your cluster topology.
 
 Edit the inventory.yml
 
 ## Running the playbook
 
-### IPA Server
-
-```
-ansible-playbook playbooks/ipa-server.yml --ask-vault-pass
-```
-
-Verify
-
-```bash
-
-kinit admin
-klist
-ipa config-show
-
-```
-
-Expected output being able to kinit as admin@<REALM.COM> and see the configuration
-
-### IPA Clients
-
-```bash
-ansible-playbook playbooks/ipa-clients.yml --ask-vault-pass
-```
-
-Verify
-From the server : 
-```
-ipa host-find
-```
-Expected the list of all the clients nodes
-
-
-From a client : 
-```
-id admin
-kinit admin
-klist
-systemctl status sssd --no-pager
-```
-Expected
-
-```bash
-some stuff
-```
-
-
-## UI
-
-https://<ipa-server>:443
-
+### FreeIPA server deployment
 
