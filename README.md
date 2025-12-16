@@ -51,7 +51,7 @@ ansible -i inventory.yml all -m ping
 
 Create a vault file to securely store sensitive passwords.
 ```bash
-ansible-vault create group_vars/ipa_cluster/vault.yml
+ansible-vault create group_vars/ipacluster/vault.yml
 ```
 
 Add the following variables:
@@ -72,6 +72,10 @@ ipaserver_realm: CLOUDERA.COM
 
 # Certificate Authority subject
 ipaserver_ca_subject: "CN=IPA CA,O=CLOUDERA,L=Paris,C=FR"
+
+# Client / SSSD configuration
+ipaclient_servers:
+  - ipa.cloudera.com
 ```
 
 ## Running the playbook
@@ -97,7 +101,7 @@ Expected result:
 
 Deploy FreeIPA clients on all remaining nodes:
 ```bash
-ansible-playbook playbooks/ipa-client.yml --ask-vault-pass
+ansible-playbook playbooks/ipa-clients.yml --ask-vault-pass
 ```
 
 Verification :
