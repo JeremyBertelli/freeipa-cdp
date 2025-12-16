@@ -25,10 +25,10 @@ ssh-keygen
 Deploy the SSH keys and validate access:
 ```bash
 chmod +x utils/deploy_keys.sh
-./utils/deploy_keys.sh host-list.txt
+./utils/deploy_keys.sh utils/host-list.txt
 
 chmod +x utils/check_access.sh
-./utils/check_access.sh host-list.txt
+./utils/check_access.sh utils/host-list.txt
 ```
 
 ## Ansible installation
@@ -62,7 +62,7 @@ vault_ipa_dm_password: "<STRONG_DIRECTORY_MANAGER_PASSWORD>"
 
 ### Cluster configuration
 
-Edit `group_vars/ipa_cluster/ipacluster.yml` and adjust the values to match your environment:
+Edit `group_vars/ipacluster/main.yml` and adjust the values to match your environment:
 ```bash
 # DNS / LDAP domain
 ipaserver_domain: cloudera.com
@@ -73,10 +73,6 @@ ipaserver_realm: CLOUDERA.COM
 # Certificate Authority subject
 ipaserver_ca_subject: "CN=IPA CA,O=CLOUDERA,L=Paris,C=FR"
 ```
-
-Also ensure that inventory.yml correctly reflects your cluster topology.
-
-Edit the inventory.yml
 
 ## Running the playbook
 
