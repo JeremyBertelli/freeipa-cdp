@@ -59,4 +59,22 @@ Then access the Cloudera Manager UI: `https://<cloudera-manager-server>:7183`
 
 <img width="1905" height="954" alt="image" src="https://github.com/user-attachments/assets/e2b5f3f8-24ee-4b97-93d5-18582fd62590" />
 
+### Local cloudera-scm-agent
+
+After enabling TLS, the local Cloudera Manager agent on the server host may fail to start with the following error in `/var/log/cloudera-scm-agent/cloudera-scm-agent.log`:
+```
+M2Crypto.SSL.Checker.WrongHost: Peer certificate subjectAltName does not match host,
+expected localhost, got DNS:<hostname>
+```
+
+To fix this, edit the agent configuration file: `/etc/cloudera-scm-agent/config.ini`
+Update the following parameter: `server_host=localhost` to the fully qualified hostname of the Cloudera Manager server.
+
+Then restart the agent:
+```
+systemctl restart cloudera-scm-agent
+****
+
+Agents installed after TLS is enabled will be correctly configured automatically.
+
 At this point, TLS is fully enabled, and all Cloudera services will be secured using certificates issued by your FreeIPA CA.
