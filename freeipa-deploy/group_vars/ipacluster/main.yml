@@ -3,7 +3,7 @@
 # =========================
 
 # DNS / LDAP domain
-ipaserver_domain: perth.root.comops.site
+ipaserver_domain: cloudera.com
 
 # Kerberos realm (Cloudera)
 ipaserver_realm: CLOUDERA.COM
@@ -28,7 +28,7 @@ ipaserver_ca_key_type: rsa
 ipaserver_ca_key_size: 4096
 
 # CA subject
-ipaserver_ca_subject: "CN=IPA CA,O=CLOUDERA,L=Perth,C=AU"
+ipaserver_ca_subject: "CN=IPA CA,O=CLOUDERA,L=Paris,C=FR"
 
 # Lifetimes (days)
 ipaserver_ca_cert_lifetime: 3650   # 10 years
@@ -43,4 +43,4 @@ ipaclient_configure_ssh: true
 ipaclient_sssd_cache_credentials: true
 
 ipaclient_servers:
-  - ccycloud-1.perth.root.comops.site
+  - ipa.cloudera.com
