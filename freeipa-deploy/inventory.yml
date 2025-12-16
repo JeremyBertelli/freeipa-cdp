@@ -1,0 +1,17 @@
+[ipaserver]
+ccycloud-1.perth.root.comops.site
+
+[ipaclients]
+ccycloud-2.perth.root.comops.site
+ccycloud-3.perth.root.comops.site
+ccycloud-4.perth.root.comops.site
+ccycloud-5.perth.root.comops.site
+ccycloud-6.perth.root.comops.site
+ccycloud-7.perth.root.comops.site
+ccycloud-8.perth.root.comops.site
+ccycloud-9.perth.root.comops.site
+ccycloud-10.perth.root.comops.site
+
+[ipacluster:children]
+ipaserver
+ipaclients

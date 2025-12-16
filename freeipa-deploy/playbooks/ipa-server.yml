@@ -1,0 +1,6 @@
+- name: Install FreeIPA Server with custom CA
+  hosts: ipaserver
+  become: true
+  roles:
+    - role: freeipa.ansible_freeipa.ipaserver
+      state: present

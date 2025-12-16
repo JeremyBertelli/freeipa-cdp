@@ -1,0 +1,6 @@
+- name: Join IPA clients to CLOUDERA.COM
+  hosts: ipaclients
+  become: true
+  roles:
+    - role: freeipa.ansible_freeipa.ipaclient
+      state: present

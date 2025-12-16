@@ -1,0 +1,46 @@
+# =========================
+# FreeIPA core configuration
+# =========================
+
+# DNS / LDAP domain
+ipaserver_domain: perth.root.comops.site
+
+# Kerberos realm (Cloudera)
+ipaserver_realm: CLOUDERA.COM
+
+# Admin credentials (from vault)
+ipaadmin_password: "{{ vault_ipa_admin_password }}"
+ipadm_password: "{{ vault_ipa_dm_password }}"
+
+# =========================
+# DNS
+# =========================
+# DNS is assumed to be managed externally
+ipaserver_setup_dns: false
+
+# =========================
+# CA configuration (custom)
+# =========================
+ipaserver_setup_ca: true
+
+# Crypto
+ipaserver_ca_key_type: rsa
+ipaserver_ca_key_size: 4096
+
+# CA subject
+ipaserver_ca_subject: "CN=IPA CA,O=CLOUDERA,L=Perth,C=AU"
+
+# Lifetimes (days)
+ipaserver_ca_cert_lifetime: 3650   # 10 years
+ipaserver_cert_lifetime: 825       # host/service certs
+
+# =========================
+# Client / SSSD configuration
+# =========================
+ipaclient_mkhomedir: true
+ipaclient_configure_sssd: true
+ipaclient_configure_ssh: true
+ipaclient_sssd_cache_credentials: true
+
+ipaclient_servers:
+  - ccycloud-1.perth.root.comops.site
