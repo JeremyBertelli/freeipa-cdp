@@ -1,45 +1,52 @@
-# KDC
+# KDC Configuration with FreeIPA
 
-Once TLS is set up : 
+Once TLS is enabled, proceed with the Kerberos (KDC) configuration.
 
 <img width="1905" height="954" alt="image" src="https://github.com/user-attachments/assets/a9fcce6e-57d5-4403-a1e7-3e7ef047b983" />
 
-Install required packages, you can use the dedicated script : 
-```
+## Install required packages
+Install the FreeIPA client tools on all hosts. You can use the provided script:
+```bash
 chmod +x utils/install_ipa_tools.sh
 ./utils/install_ipa_tools.sh utils/host-list.txt 
 ```
 
-One done, Select KDC Type : Red Hat IPA and tick the box "I have completed all the above steps."
+## Select KDC Type
+
+In Cloudera Manager, select Red Hat IPA as the KDC type and check “I have completed all the above steps.”
 
 <img width="1908" height="953" alt="image" src="https://github.com/user-attachments/assets/3a12d74c-13d4-46b0-af13-a58eae836bef" />
 
-Fill the informations : 
-- default_realm : CLOUDERA.COM must match the # Kerberos realm (Cloudera) ipaserver_realm: CLOUDERA.COM from main.yml
-- KDC and admin server to your IPA host
-<img width="1904" height="958" alt="image" src="https://github.com/user-attachments/assets/d8cd3f78-0e64-42b7-ad47-7cb64a44de71" />
+## KDC settings
 
+Fill in the following values:
+- Default realm: `CLOUDERA.COM` (Must match `ipaserver_realm` defined in `main.yml`)
+- KDC server: FreeIPA server hostname
+- Admin server: FreeIPA server hostname
 
-## krb5 configuration 
-
+Configure the following encryption types:
+```bash
 aes256-cts-hmac-sha1-96
 aes128-cts-hmac-sha1-96
 aes256-cts-hmac-sha384-192
 aes128-cts-hmac-sha256-128
+```
 
-Tick krb_manage_krb5_conf flag.
+<img width="1907" height="955" alt="image" src="https://github.com/user-attachments/assets/773a7786-e72e-4b2b-8fa3-8025c248d331" />
 
-<img width="1917" height="957" alt="image" src="https://github.com/user-attachments/assets/d2254bb8-2a3e-44a5-ba33-6acb023a238a" />
+## krb5 configuration
 
+Enable the Manage krb5.conf option.
 
+<img width="1902" height="952" alt="image" src="https://github.com/user-attachments/assets/f5f874db-c459-40fa-b341-dd811080a10b" />
 
 ## KDC admin user import
 
-Use default admin user  
+Use the default admin user.
 
 <img width="1909" height="344" alt="image" src="https://github.com/user-attachments/assets/d678e057-1cdf-41df-8b91-49d23f9d0741" />
 
-will create a cmadmin-<uid> That will create principals and everything needed.
+Cloudera Manager will automatically create a dedicated Kerberos admin principal (`cmadmin-<uid>`) to manage service principals and keytabs.
 
 <img width="1911" height="601" alt="image" src="https://github.com/user-attachments/assets/8da8ff67-e2f8-448d-8700-ecb748ab1f0a" />
 
