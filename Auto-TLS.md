@@ -48,8 +48,6 @@ This process is fully automated and follows the Cloudera reference architecture 
 Set the Trusted CA Certificates Location to the FreeIPA CA certificate: `/etc/ipa/ca.crt`.
 Cloudera Manager will trust this CA to sign all TLS certificates.
 
-Select Enabling TLS for all existing and future clusters to enable TLS immediately on the current cluster and all future ones.
-
 <img width="1906" height="951" alt="image" src="https://github.com/user-attachments/assets/823d3d66-ff1a-49f4-9862-0762768f69ed" />
 
 After completing the Auto-TLS configuration, restart Cloudera Manager:
@@ -61,4 +59,4 @@ Then access the Cloudera Manager UI: `https://<cloudera-manager-server>:7183`
 
 <img width="1905" height="954" alt="image" src="https://github.com/user-attachments/assets/e2b5f3f8-24ee-4b97-93d5-18582fd62590" />
 
-At this point, TLS is fully enabled, and all Cloudera services are secured using certificates issued by your FreeIPA CA.
+At this point, TLS is fully enabled, and all Cloudera services will be secured using certificates issued by your FreeIPA CA.
