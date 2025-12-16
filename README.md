@@ -82,3 +82,46 @@ Edit the inventory.yml
 
 ### FreeIPA server deployment
 
+Run the playbook on the FreeIPA server:
+```bash
+ansible-playbook playbooks/ipa-server.yml --ask-vault-pass
+```
+
+Verification :
+```bash
+kinit admin
+klist
+ipa config-show
+```
+Expected result:
+- Successful Kerberos authentication as `admin@<REALM>`
+- FreeIPA configuration displayed without errors
+
+### FreeIPA client deployment
+
+Deploy FreeIPA clients on all remaining nodes:
+```bash
+ansible-playbook playbooks/ipa-client.yml --ask-vault-pass
+```
+
+Verification :
+```bash
+ipa host-find
+```
+Expected result:
+- All client hosts are listed
+
+From a client node :
+```bash
+id admin
+kinit admin
+klist
+systemctl status sssd
+```
+Expected result:
+- User resolution works
+- Kerberos ticket is obtained successfully
+- SSSD service is running
+
+## Web UI access 
+Access the FreeIPA web interface at `https://<ipa-server>:443`
