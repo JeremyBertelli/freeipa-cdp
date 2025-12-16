@@ -1,16 +1,13 @@
 [ipaserver]
-ccycloud-1.perth.root.comops.site
+ipa.cloudera.com
 
 [ipaclients]
-ccycloud-2.perth.root.comops.site
-ccycloud-3.perth.root.comops.site
-ccycloud-4.perth.root.comops.site
-ccycloud-5.perth.root.comops.site
-ccycloud-6.perth.root.comops.site
-ccycloud-7.perth.root.comops.site
-ccycloud-8.perth.root.comops.site
-ccycloud-9.perth.root.comops.site
-ccycloud-10.perth.root.comops.site
+master-1.cloudera.com
+master-2.cloudera.com
+master-3.cloudera.com
+worker-1.cloudera.com
+worker-2.cloudera.com
+worker-3.cloudera.com
 
 [ipacluster:children]
 ipaserver
