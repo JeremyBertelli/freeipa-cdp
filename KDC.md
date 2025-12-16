@@ -50,8 +50,10 @@ Cloudera Manager will automatically create a dedicated Kerberos admin principal 
 
 <img width="1911" height="601" alt="image" src="https://github.com/user-attachments/assets/8da8ff67-e2f8-448d-8700-ecb748ab1f0a" />
 
-
 Finally, KDC is set up and you can proceed to the install of a secured cluster !
+
+<img width="1904" height="955" alt="image" src="https://github.com/user-attachments/assets/5d11ce0d-5290-48b4-9e34-8e9ae52ab8eb" />
+
 
 
 
