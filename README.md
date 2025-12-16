@@ -11,7 +11,7 @@ Ensure that forward and reverse DNS resolution is correctly configured for all h
 ```bash
 yum install -y bind-utils
 chmod +x utils/verify_dns.sh
-./utils/verify_dns.sh host-list.txt
+./utils/verify_dns.sh utils/host-list.txt
 ```
 
 ### Passwordless SSH configuration
