@@ -22,11 +22,11 @@ ipaserver_ca_subject: "CN=IPA CA,O=CLOUDERA,L=Paris,C=FR"
 
 If the subject matches, Cloudera Manager can safely trust this CA for TLS operations.
 
-## Enabling Auto-TLS with an intermediate CA signed by an existing Root CA
+## Use Cloudera Manager to generate internal CA and corresponding certificates
 
 ### How it works
 
-This process is fully automated and follows the Cloudera reference architecture described here: [Enabling Auto-TLS with an intermediate CA signed by an existing Root CA](https://docs.cloudera.com/cdp-private-cloud-base/7.1.9/security-encrypting-data-in-transit/topics/cm-security-use-case-2.html)
+This process is fully automated and follows the Cloudera reference architecture described here: [Use Cloudera Manager to generate internal CA and corresponding certificates](https://docs.cloudera.com/cdp-private-cloud-base/7.1.9/security-encrypting-data-in-transit/topics/cm-security-use-case-1.html)
 
 ### How to do it
 
