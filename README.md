@@ -34,3 +34,4 @@ It does not replace official Cloudera documentation and should be reviewed and a
 ## TODO
 
 - Documentation to enable FreeIPA Kerberos cross-realm trust with enterprise AD
+- Documentation to sign FreeIPA CA with enterprise CA
