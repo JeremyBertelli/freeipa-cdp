@@ -18,7 +18,7 @@ This repository provides a simple and reproducible approach to deploy a FreeIPA 
   - FreeIPA server and clients deployment using Ansible FreeIPA
   - Basic configuration adapted to a Cloudera CDP environment
 - Cloudera CDP Authentication with Kerberos configuration using FreeIPA
-- Cloudera CDP Auto-TLS configuration with an intermediate CA signed by FreeIPA CA
+- Cloudera CDP Auto-TLS configuration using Cloudera Manager to generate internal CA and corresponding certificates
 
 ### Environment
 
