@@ -31,7 +31,7 @@ When Auto-TLS is enabled in Cloudera Manager, the following steps occur automati
   - A CSR is created for each service and host
   - Each CSR contains the host identity (hostname, SANs, etc.)
 - The CSR is sent to the FreeIPA Certificate Authority
-  - Cloudera Manager uses the trusted CA ; here using the FreeIPA CA `/etc/ipa/ca.crt
+  - Cloudera Manager uses the trusted CA ; here using the FreeIPA CA `/etc/ipa/ca.crt`
   - FreeIPA signs the certificates using the internal IPA CA
 - Certificates and trust chain are distributed automatically
   - Signed certificates are installed on all Cloudera services
