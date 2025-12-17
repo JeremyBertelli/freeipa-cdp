@@ -26,21 +26,6 @@ If the subject matches, Cloudera Manager can safely trust this CA for TLS operat
 
 ### How it works
 
-When Auto-TLS is enabled in Cloudera Manager, the following steps occur automatically:
-- Cloudera Manager generates a Certificate Signing Request (CSR)
-  - A CSR is created for each service and host
-  - Each CSR contains the host identity (hostname, SANs, etc.)
-- The CSR is sent to the FreeIPA Certificate Authority
-  - Cloudera Manager uses the trusted CA ; here using the FreeIPA CA `/etc/ipa/ca.crt`
-  - FreeIPA signs the certificates using the internal IPA CA
-- Certificates and trust chain are distributed automatically
-  - Signed certificates are installed on all Cloudera services
-  - The full certificate chain (leaf + CA) is configured
-  - No manual keystore or truststore management is required
-- TLS is enabled cluster-wide
-  - All internal service-to-service communication is encrypted
-  - Web UIs and APIs are protected with HTTPS
-
 This process is fully automated and follows the Cloudera reference architecture described here: [Enabling Auto-TLS with an intermediate CA signed by an existing Root CA](https://docs.cloudera.com/cdp-private-cloud-base/7.1.9/security-encrypting-data-in-transit/topics/cm-security-use-case-2.html)
 
 ### How to do it
